@@ -4,9 +4,9 @@
   import { tasks, active } from "../stores.js";
 
   function editTask(object) {
-    const name = UIkit.modal.prompt("Edit Task", object.name).then(text => {
+    const name = UIkit.modal.prompt("Edit Task", object.name).then((text) => {
       if (text !== object.name && text !== null) {
-        const target = $tasks.filter(task => task.name === object.name)[0];
+        const target = $tasks.filter((task) => task.name === object.name)[0];
         target.name = text;
         target.dateModified = Date.now();
         $tasks = [...$tasks];
@@ -15,7 +15,7 @@
           {
             status: "primary",
             pos: "bottom-center",
-            timeout: 1500
+            timeout: 1500,
           }
         );
       } else {
@@ -31,7 +31,7 @@
       )
       .then(
         () => {
-          const refId = $tasks.findIndex(obj => obj.name === object.name);
+          const refId = $tasks.findIndex((obj) => obj.name === object.name);
           $tasks.splice(refId, 1);
           $tasks = [...$tasks];
           return UIkit.notification(
@@ -39,7 +39,7 @@
             {
               status: "danger",
               pos: "bottom-center",
-              timeout: 1500
+              timeout: 1500,
             }
           );
         },
@@ -50,27 +50,14 @@
   }
 </script>
 
-<style>
-  a[uk-icon="icon: close"]:hover {
-    color: #ff0000;
-  }
-
-  a[uk-icon="icon: check"]:hover {
-    color: #11ca00;
-  }
-
-  .custom_taskname {
-    font-family: "Annie Use Your Telescope", cursive;
-  }
-</style>
-
 <li data-tags={object.project}>
   <!--<li data-tags={object.project} data-object={JSON.stringify(object)}>-->
   <form
     class="uk-card uk-card-default uk-card-body uk-flex uk-flex-between
     uk-flex-middle uk-width-3-4@s uk-width-2-3@m uk-width-1-2@l uk-margin-auto
-    uk-box-shadow-small">
-    {#if $active === 'All Tasks'}
+    uk-box-shadow-small"
+  >
+    {#if $active === "All Tasks"}
       <span
         class="uk-label uk-margin-right"
         uk-tooltip="title: Project Name; pos: right; delay: 500;">
@@ -88,22 +75,38 @@
           href="#"
           uk-icon="icon: check"
           uk-tooltip="title: Mark Complete; pos: top; delay: 1000;"
-          on:click={editTask(object)} />
+        />
       </li>
       <li>
         <a
           href="#"
           uk-icon="icon: pencil"
           uk-tooltip="title: Edit Task; pos: top; delay: 1000;"
-          on:click={editTask(object)} />
+          on:click={editTask(object)}
+        />
       </li>
       <li>
         <a
           href="#"
           uk-icon="icon: close"
           uk-tooltip="title: Delete Task; pos: top; delay: 1000;"
-          on:click={deleteTask(object)} />
+          on:click={deleteTask(object)}
+        />
       </li>
     </ul>
   </form>
 </li>
+
+<style>
+  a[uk-icon="icon: close"]:hover {
+    color: #ff0000;
+  }
+
+  a[uk-icon="icon: check"]:hover {
+    color: #11ca00;
+  }
+
+  .custom_taskname {
+    font-family: "Annie Use Your Telescope", cursive;
+  }
+</style>
