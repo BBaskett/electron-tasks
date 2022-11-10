@@ -61,7 +61,7 @@
     "@electron-forge/maker-zip": "6.0.0-beta.50",
     "@rollup/plugin-commonjs": "11.0.2",
     "@rollup/plugin-node-resolve": "^7.0.0",
-    "electron": "^8.2.4",
+    "electron": "^18.3.7",
     "rollup": "^1.20.0",
     "rollup-plugin-livereload": "^1.0.0",
     "rollup-plugin-svelte": "^5.0.3",
